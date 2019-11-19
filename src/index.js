@@ -1,4 +1,3 @@
-// 3. It didn’t bold the currently selected move in the move list.
 // 4. It hardcoded the creation of the grid, instead of using two for loops.
 //     5. It sorted the moves in descending order (which actually makes sense most of the time)
 // 6. It didn’t highlight the squares that caused the winning move.
@@ -23,33 +22,25 @@ class Board extends React.Component {
         />;
     }
 
+    renderBoard(size) {
+        let rows = [];
+
+        for (let i = 0; i < size; i++) {
+            let columns = [];
+
+            for (let j = 0; j < size; j++) {
+                columns.push(this.renderSquare(size * i + j));
+            }
+            rows.push(<div className="board-row">{columns}</div>);
+        }
+        return rows;
+    }
+
     render() {
+        let gridSize = 4;
         return (
             <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                    {this.renderSquare(3)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(8)}
-                    {this.renderSquare(9)}
-                    {this.renderSquare(10)}
-                    {this.renderSquare(11)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(12)}
-                    {this.renderSquare(13)}
-                    {this.renderSquare(14)}
-                    {this.renderSquare(15)}
-                </div>
+                {this.renderBoard(gridSize)}
             </div>
         );
     }

@@ -81,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574196039831</updated>
-      <workItem from="1574196041074" duration="4084000" />
+      <workItem from="1574196041074" duration="4684000" />
     </task>
     <task id="LOCAL-00001" summary="Added tic tac toe game&#10;Game size is now 4 by 4">
       <created>1574196853602</created>
@@ -97,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574199067091</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added bold on currently selected move">
+      <created>1574201025878</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574201025878</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +124,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added tic tac toe game&#10;Game size is now 4 by 4" />
     <MESSAGE value="Added move coordinates to history" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added move coordinates to history" />
+    <MESSAGE value="Added bold on currently selected move" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added bold on currently selected move" />
   </component>
 </project>

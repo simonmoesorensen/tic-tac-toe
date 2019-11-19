@@ -92,14 +92,37 @@ class Game extends React.Component {
         })
     }
 
+    getCoords(past, current) {
+        for (let i = 0; i < current.squares.length; i++) {
+            if ((past.squares[i] === null) && (current.squares[i] !== null)) {
+                let col = (i % 4) + 1;
+                let row = Math.floor(i / 4) + 1;
+                return row + "," + col;
+            }
+        }
+    }
+
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
 
+        let coords;
+        if (this.state.stepNumber > 0) {
+            const past = history[this.state.stepNumber - 1];
+            coords = this.getCoords(past, current);
+        }
+
         const moves = history.map((step, move) => {
+            let current = history[move];
+            let past = history[move - 1];
+            if (!past) {
+                past = {squares: Array(16).fill(null)};
+            }
+            let coords = this.getCoords(past, current);
+
             const desc = move ?
-                'Go to move #' + move :
+                'Go to move #' + move + " at (" + coords  + ")":
                 'Go to game start';
             return (
                 <li key={move}>
@@ -124,7 +147,7 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
-                    <div>Coordinates: </div>
+                    <div>Recent move (row, col): {coords}</div>
                     <ol>{moves}</ol>
                 </div>
             </div>

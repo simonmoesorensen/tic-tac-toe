@@ -1,4 +1,3 @@
-// 2. it didn’t list the coordinates of each move (row, col).
 // 3. It didn’t bold the currently selected move in the move list.
 // 4. It hardcoded the creation of the grid, instead of using two for loops.
 //     5. It sorted the moves in descending order (which actually makes sense most of the time)
@@ -120,13 +119,13 @@ class Game extends React.Component {
                 past = {squares: Array(16).fill(null)};
             }
             let coords = this.getCoords(past, current);
-
+            let isCurrentStep = this.state.stepNumber === move;
             const desc = move ?
                 'Go to move #' + move + " at (" + coords  + ")":
                 'Go to game start';
             return (
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                    <button onClick={() => this.jumpTo(move)}>{isCurrentStep ? <b>{desc}</b> : desc}</button>
                 </li>
             );
         });

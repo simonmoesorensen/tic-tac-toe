@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bcf65516-c1e0-431b-9af1-6293a6a35650" name="Default Changelist" comment="">
+    <list default="true" id="bcf65516-c1e0-431b-9af1-6293a6a35650" name="Default Changelist" comment="Added sort&#10;Fixed sizing bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +82,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574196039831</updated>
-      <workItem from="1574196041074" duration="11647000" />
+      <workItem from="1574196041074" duration="14287000" />
     </task>
     <task id="LOCAL-00001" summary="Added tic tac toe game&#10;Game size is now 4 by 4">
       <created>1574196853602</created>
@@ -111,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574201680197</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added sort&#10;Fixed sizing bugs">
+      <created>1574210889445</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574210889445</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,18 +141,7 @@
     <MESSAGE value="Added move coordinates to history" />
     <MESSAGE value="Added bold on currently selected move" />
     <MESSAGE value="Generates board with two for loops and a size variable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Generates board with two for loops and a size variable" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/index.js</url>
-          <line>159</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Added sort&#10;Fixed sizing bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sort&#10;Fixed sizing bugs" />
   </component>
 </project>

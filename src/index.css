@@ -17,6 +17,10 @@ ol, ul {
     margin-bottom: 10px;
 }
 
+.highlight {
+    background-color: red!important;
+}
+
 .square {
     background: #fff;
     border: 1px solid #999;

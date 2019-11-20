@@ -1,5 +1,3 @@
-// 4. It hardcoded the creation of the grid, instead of using two for loops.
-//     5. It sorted the moves in descending order (which actually makes sense most of the time)
 // 6. It didn’t highlight the squares that caused the winning move.
 // 7. It didn’t display a message about draws (aka Cats’ games).
 
@@ -15,10 +13,16 @@ function Square(props) {
     );
 }
 
+function Checkbox(props) {
+    return (
+        <input type="checkbox" onClick={props.onClick}/>
+    )
+}
+
 class Board extends React.Component {
     renderSquare(i) {
-        return <Square value={this.props.squares[i]}
-                onClick={() => this.props.onClick(i)}
+        return <Square key={i} value={this.props.squares[i]}
+                       onClick={() => this.props.onClick(i)}
         />;
     }
 
@@ -31,16 +35,16 @@ class Board extends React.Component {
             for (let j = 0; j < size; j++) {
                 columns.push(this.renderSquare(size * i + j));
             }
-            rows.push(<div className="board-row">{columns}</div>);
+            rows.push(<div key={i} className="board-row">{columns}</div>);
         }
         return rows;
     }
 
     render() {
-        let gridSize = 4;
+        let size = this.props.size;
         return (
             <div>
-                {this.renderBoard(gridSize)}
+                {this.renderBoard(size)}
             </div>
         );
     }
@@ -51,10 +55,11 @@ class Game extends React.Component {
         super(props);
         this.state = {
             history: [{
-                squares: Array(16).fill(null),
+                squares: Array(props.size**2).fill(null),
             }],
             xIsNext: true,
             stepNumber: 0,
+            sortAscending: false,
         };
     }
 
@@ -107,12 +112,12 @@ class Game extends React.Component {
             let current = history[move];
             let past = history[move - 1];
             if (!past) {
-                past = {squares: Array(16).fill(null)};
+                past = {squares: Array(this.props.size).fill(null)};
             }
             let coords = this.getCoords(past, current);
             let isCurrentStep = this.state.stepNumber === move;
             const desc = move ?
-                'Go to move #' + move + " at (" + coords  + ")":
+                'Go to move #' + move + " at (" + coords + ")" :
                 'Go to game start';
             return (
                 <li key={move}>
@@ -120,6 +125,10 @@ class Game extends React.Component {
                 </li>
             );
         });
+
+        if (this.state.sortAscending) {
+            moves.reverse();
+        }
 
         let status;
         if (winner) {
@@ -132,44 +141,92 @@ class Game extends React.Component {
             <div className="game">
                 <div className="game-board">
                     <Board
-                    squares={current.squares}
-                    onClick={(i) => this.handleClick(i)}/>
+                        squares={current.squares}
+                        onClick={(i) => this.handleClick(i)}
+                        size={this.props.size}/>
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
                     <div>Recent move (row, col): {coords}</div>
+                    Sort by ascending order: <Checkbox onClick={(i) => this.handleSortClick(i)}/>
                     <ol>{moves}</ol>
                 </div>
             </div>
         );
+    }
+
+    handleSortClick(i) {
+        this.setState({
+            sortAscending: i.target.checked,
+        })
     }
 }
 
 // ========================================
 
 ReactDOM.render(
-    <Game/>,
+    <Game size={prompt('Give the size of the board')}/>,
     document.getElementById('root')
 );
 
 function calculateWinner(squares) {
-    const lines = [
-        [0, 1, 2, 3],
-        [4, 5, 6, 7],
-        [8, 9, 10, 11],
-        [12, 13, 14, 15],
-        [0, 5, 10, 15],
-        [3, 6, 9, 12],
-        [0, 4, 8, 12],
-        [1, 5, 9, 13],
-        [2, 6, 10, 14],
-        [3, 7, 11, 15],
-    ];
+    let size = Math.sqrt(squares.length);
+    let lines = getWinningLines(size);
     for (let i = 0; i < lines.length; i++) {
-        const [a, b, c, d] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c] && squares[a] === squares[d]) {
-            return squares[a];
+        if (checkLine(lines[i], squares)) {
+            return squares[lines[i][0]];
         }
     }
     return null;
+}
+
+function checkLine(line, squares) {
+    let lastVal = squares[line.pop()];
+    if (!lastVal) {
+        return false;
+    }
+
+    let check = true;
+    for (const val of line) {
+        check = check && (lastVal === squares[val]);
+    }
+    return check;
+}
+
+function getWinningLines(size) {
+    let lines = [];
+    let line;
+
+    for (let i = 0; i < size ** 2; i += size) {
+        let line = [];
+
+        for (let j = i; j < i + size; j++) {
+            line.push(j);
+        }
+
+        lines.push(line);
+    }
+
+    line = [];
+    for (let i = 0; i < size ** 2; i += size + 1) {
+        line.push(i);
+    }
+    lines.push(line);
+
+    line = [];
+    for (let i = 3; i <= size ** 2 - size; i += size - 1) {
+        line.push(i);
+    }
+    lines.push(line);
+
+    for (let i = 0; i < size; i++) {
+        let line = [];
+
+        for (let j = i; j < size ** 2; j += size) {
+            line.push(j);
+        }
+
+        lines.push(line);
+    }
+    return lines;
 }

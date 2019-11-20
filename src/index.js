@@ -140,7 +140,7 @@ class Game extends React.Component {
         }
 
         let status;
-        if (!current.squares.includes(null)) {
+        if (!current.squares.includes(null) && !winner) {
             status = 'Draw';
             alert('Game ended in a draw.')
         }

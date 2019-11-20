@@ -31958,7 +31958,7 @@ class Game extends _react.default.Component {
 
     let status;
 
-    if (!current.squares.includes(null)) {
+    if (!current.squares.includes(null) && !winner) {
       status = 'Draw';
       alert('Game ended in a draw.');
     }
@@ -32098,7 +32098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61375" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61412" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -32275,4 +32275,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/index.js.map
+//# sourceMappingURL=/src.e31bb0bc.js.map

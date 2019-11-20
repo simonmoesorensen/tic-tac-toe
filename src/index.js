@@ -140,9 +140,14 @@ class Game extends React.Component {
         }
 
         let status;
+        if (!current.squares.includes(null)) {
+            status = 'Draw';
+            alert('Game ended in a draw.')
+        }
         if (winner) {
             status = 'Winner: ' + winner;
-        } else {
+        }
+        if (!winner && current.squares.includes(null)) {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
 
@@ -224,7 +229,7 @@ function getWinningLines(size) {
     lines.push(line);
 
     line = [];
-    for (let i = 3; i <= size ** 2 - size; i += size - 1) {
+    for (let i = size - 1; i <= size ** 2 - size; i += size - 1) {
         line.push(i);
     }
     lines.push(line);
